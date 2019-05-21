@@ -16,6 +16,10 @@ This command download and configure the necesary files to achieve the configurat
 This command apply the changes
 `terraform apply`
 
+This command will destroy the created infrastructure
+`terraform destroy`
+
+
 ## Troubleshootings
 
  - You could have problem with the VPC, this will work with the [default VPC](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html?shortFooter=true#create-default-vpc)
