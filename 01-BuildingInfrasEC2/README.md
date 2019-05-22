@@ -10,17 +10,22 @@ In order to don't upload any of the credentials to this public repo we use the p
 
 #### Follow the next step to deploy this in your AWS account
 
-This command download and configure the necesary files to achieve the configuration in your AWS account.
+- This command download and configure the necesary files to achieve the configuration in your AWS account.
 
-`terraform init`
+	`terraform init`
 
-This command apply the changes.
 
-`terraform apply`
+- This command will show you what changes are going to be applied.
 
-This command will destroy the created infrastructure.
+	`terraform plan`
 
-`terraform destroy`
+- This command apply the changes.
+
+	`terraform apply`
+
+- This command will destroy the created infrastructure.
+
+	`terraform destroy`
 
 
 ## Troubleshootings
