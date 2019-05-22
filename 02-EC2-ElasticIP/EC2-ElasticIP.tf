@@ -21,7 +21,7 @@ resource "aws_eip" "eip" {
 } */
 
 
-/* ###### This example contains explicit dependencies #####
+###### This example contains explicit dependencies #####
 
 # This is the cloud provider
 #     If don't use parameters of access_key and secret_key it will find for the credentials of AWS in the file ~/.aws/credentials
@@ -49,4 +49,4 @@ resource "aws_s3_bucket" "my-first-s3-bucket" {
   # conflicts.
   bucket = "my-first-s3-bucket-0000001"
   acl    = "private"
-} */
+}
