@@ -2,7 +2,18 @@ You have now seen how to build, change, and destroy infrastructure from a local 
 
 ### Terraform Cloud
 
-configure the token in %APPDATA% for windows and ~/ for linux
+configure the token in %APPDATA% for windows and ~/ for linux [more information](https://www.terraform.io/docs/commands/cli-config.html)
 
-add config for remote in the .tf file
+
+add config for remote in the main .tf file
+
+terraform {
+  backend "remote" {
+    organization = "jlrm-org"
+
+    workspaces {
+      name = "Dev-2"
+    }
+  }
+}
 

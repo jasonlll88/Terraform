@@ -9,12 +9,13 @@ resource "aws_instance" "ec2-instance-new" {
   instance_type = "t2.micro"  
 }
 
-# Using a single workspace:
+# Using a single workspace in terraform Cloud:
 terraform {
   backend "remote" {
-    hostname = "app.terraform.io"
+    # Organization define in terraform cloud
     organization = "jlrm-org"
 
+    # This workspace will be created if doesn't exist
     workspaces {
       name = "Dev-2"
     }
