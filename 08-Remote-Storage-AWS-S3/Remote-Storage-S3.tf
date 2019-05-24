@@ -13,12 +13,12 @@ resource "aws_instance" "ec2-instance-new" {
 terraform {
   backend "s3" {
     # name of the bucket where it's going to write
-    bucket = "remote-storage-terraform-example"
+    bucket = "terraform-remote-state-storage-s3-ex"
     # Key where it will write including the name of the file
     key    = "dev-3/terraform_dev.tfstate"
     region = "us-east-2"
 
     # Name of the dynamoDB table
-    dynamodb_table = "remote-storage-terraform-example"
+    dynamodb_table = "terraform-state-lock-dynamo"
   }
 }
