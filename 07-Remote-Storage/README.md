@@ -2,4 +2,7 @@ You have now seen how to build, change, and destroy infrastructure from a local 
 
 ### Terraform Cloud
 
+configure the token in %APPDATA% for windows and ~/ for linux
+
+add config for remote in the .tf file
 
