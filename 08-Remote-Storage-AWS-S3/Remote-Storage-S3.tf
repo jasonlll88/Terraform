@@ -5,7 +5,7 @@ provider "aws" {
 
 # This define an AWS ec2 instance to be created	
 resource "aws_instance" "ec2-instance-new" {
-  ami           = "ami-036a034cc552b82e8"
+  ami           = "ami-0ebbf2179e615c338"
   instance_type = "t2.micro"  
 }
 

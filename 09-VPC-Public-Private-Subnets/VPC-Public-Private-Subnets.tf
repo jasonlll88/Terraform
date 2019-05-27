@@ -89,3 +89,22 @@ resource "aws_route_table_association" "association_private_subnet" {
   subnet_id      = "${aws_subnet.private_subnet.id}"
 }
 
+
+#### Security Groups #######
+
+
+
+
+
+
+
+
+
+#### EC2 Instances #######
+
+resource "aws_instance" "ec2_instance_public" {
+  key_name      = "eks-worker-nodes-key"
+  instance_type = "t2.micro"
+  subnet_id     = "${aws_subnet.public_subnet.id}"
+  ami           = "ami-0ebbf2179e615c338"
+}
