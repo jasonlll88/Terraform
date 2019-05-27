@@ -91,14 +91,43 @@ resource "aws_route_table_association" "association_private_subnet" {
 
 
 #### Security Groups #######
+resource "aws_security_group" "security_group_public" {
+  name        = "terraform_public"
+  description = "Used in the terraform for public instances"
+  vpc_id      = "${aws_vpc.my_vpc.id}"
 
+  # SSH access from anywhere
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
+  # HTTP access from the VPC
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
 
+  # ICMP access from the anywhere
+  ingress {
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-
-
-
-
+  # outbound internet access
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 #### EC2 Instances #######
 
@@ -107,4 +136,37 @@ resource "aws_instance" "ec2_instance_public" {
   instance_type = "t2.micro"
   subnet_id     = "${aws_subnet.public_subnet.id}"
   ami           = "ami-0ebbf2179e615c338"
+  # This role is to use the instance with the SSM system manager of AWS
+  iam_instance_profile = "AmazonEC2RoleForSSM"
+  vpc_security_group_ids = ["${aws_security_group.security_group_public.id}"]
+
+
+
+}
+
+
+resource "aws_instance" "ec2_instance_private" {
+  key_name      = "eks-worker-nodes-key"
+  instance_type = "t2.micro"
+  subnet_id     = "${aws_subnet.private_subnet.id}"
+  ami           = "ami-0ebbf2179e615c338"
+  # This role is to use the instance with the SSM system manager of AWS
+  iam_instance_profile = "AmazonEC2RoleForSSM"
+  vpc_security_group_ids = ["${aws_security_group.security_group_public.id}"]
+
+/*     connection {
+    # The default username for our AMI
+    user = "ec2-user"
+
+    # The connection will use the local SSH agent for authentication.
+  }
+
+    provisioner "remote-exec" {
+    inline = [
+      "sudo yum -y update",
+      "sudo amazon-linux-extras install -y nginx1.12",
+      "systemctl start nginx.service",
+    ]
+  } */
+
 }

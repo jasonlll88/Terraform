@@ -21,20 +21,27 @@ You need to create the network with the following order
   - Private
   - Public
 
+- Create route tables
+  - Private (main)
+  - Public
+
 - Create an internet gateway associatted with the VPC
+- create a elastic IP it's necessary for the NAT gateway
+- Create a NAT gateway
+
+- Associate the private route table as the main table
+- Associate the main route table of the VPC with the NAT gateway created
+
+- Associte the public route table with the IGW
+
+- Associate the public route table with the public Subnet
+- Associate the private route table with the private Subnet
 
 
-- Associate the main route table of the VPC with the internet gateway created
-
-- create a elastic IP it's necessary for the nat gateway
-
-- create a Nat gateway
+- Launch the instances
+  - public
+  - private
 
 
-
- To make your subnet a public subnet, you must attach an internet gateway to your VPC, You can then create a custom route table, and add route to the internet gateway
-
- Create or modify your security groups as needed.
-
- Create or modify your network ACLs as needed.
-
+TODO
+Add provisioners and test the installation of NGINX in the remote mahcines
